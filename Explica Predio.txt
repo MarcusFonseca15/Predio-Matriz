@@ -13,3 +13,7 @@ O chute é (3, 2, 1)
 5-3 = 2, 2-2 = 0, 3-1= 2.   2+0+2 = 4 passos
 Mas mesmo que "dif = abs(cX - randX) + abs(cY - randY) + abs(cZ - randZ)", LINHA 29 faça isso
 o erro persiste.
+
+Adicionado:
+	Usuario escolhe se deseja continuar após o 1° chute ou não (pula e mostra onde está a posição real)
+	Conferir se as coordenadas estão no limite 0 > x < 5(andar) ou 3(linha e coluna)
