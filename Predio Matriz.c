@@ -18,7 +18,17 @@ int main() {
     scanf("%d %d %d", &cX, &cY, &cZ);
     
     //distancia
-    dif = abs(cX - randX) + abs(cY - randY) + abs(cZ - randZ);
+    int difX = (cX - randX), difY = (cY - randY), difZ = (cZ - randZ);
+    if(difX < 0){
+        difX = randX - cX;
+    }
+    if(difY < 0){
+        difY = randY - cY;
+    }
+    if(difZ < 0){
+        difZ = randZ - cZ;
+    }
+    //dif = abs(cX - randX) + abs(cY - randY) + abs(cZ - randZ);
     printf("Errou! Faltam %d passos\n", dif);
     
     int i, j, k, l, m, n;
@@ -36,7 +46,10 @@ int main() {
         }
         printf("\n");
     }
+    int difsoma = difX+difY+difZ;
+    //int ababa = abs(cX-l)+abs(cY-m)+abs(cZ-n);
     printf ("%d %d %d", l+1, m+1, n+1); //Mostrar coordenadas
-    
+    //printf ("\n%d passos", ababa);
+    printf("FALTAM %d", difsoma);
     return 0;
 }
