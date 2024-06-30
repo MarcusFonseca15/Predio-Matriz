@@ -6,4 +6,4 @@ calcula a distancia entre o buraco e a posição atual, até chegar nele (Zerar)
 
 > Sendo um passo a passo, se a distancia aumentar, ele volta 1 passo automaticamente (Se qualquer eixo aumenta).
 > Ao mudar de andar, ele fará esse teste sempre.
-Voce vai imprimir a Distancia Total percorrida (soma do quanto percorreu em cada andar*/
+Voce vai imprimir a Distancia Total percorrida (soma do quanto percorreu em cada andar) e a Média de Passos por andar

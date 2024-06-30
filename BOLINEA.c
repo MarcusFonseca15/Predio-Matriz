@@ -4,17 +4,17 @@ Buraco = X*/
 #include <stdlib.h>
 #include <time.h>
 #include <unistd.h>
+
 int main(){
 
 // estrutura de dados
 int x=5, y=5, w=5, z=5, l, c;
 char matriz[5][5];
 int passos = 0, andar;
-int repeat=0;
 //distS0 distancia antes, distS1 distancial atual e compara
 
-while (repeat!=10){ //repetir 10 vezes/
-printf("Andar: %d", andar);
+//while (repeat<10){ //repetir 10 vezes/
+//printf("Andar: %d", andar);
  srand(time(NULL));
  //BURACO: X
     int lin_buraco = (rand() % x); // Linha
@@ -23,12 +23,6 @@ printf("Andar: %d", andar);
     int lin_bola = (rand() % z);
     int col_bola = (rand() % w);
     
-    // Garantir que buraco e bola não spawne no msm lugar
-    while (lin_bola == lin_buraco && col_bola == col_buraco) {
-        lin_buraco = rand() % x;
-        col_buraco = rand() % y;
-    }
-
 // inicialização da matriz 5x5 VAZIA
     for (int j = 0; j < x; j++) {
             for (int k = 0; k < y; k++) {
@@ -36,8 +30,8 @@ printf("Andar: %d", andar);
             }
     }
 //BOTA O BURACO E A BOLA NO ESPAÇO
-matriz[lin_bola][col_bola] = 'O';
-matriz[lin_buraco][col_buraco] = 'X';
+matriz[lin_buraco][col_buraco] = 'O';
+matriz[lin_bola][col_bola] = 'X';
 
 // distancia entre buraco e bola, se a diferença entre a
 //bola e o buraco diminuir continua andando na mesma direção,
@@ -46,30 +40,28 @@ int dist_ant = abs(lin_buraco - lin_bola) + abs(col_buraco - col_bola); //distan
 int dist_atual = 0;
 //printf("%d passos\n", dist); //Debug Log.
 //ANDANDO
+
     do {
         // Tentar mover a bola na direção do buraco
         int mov_lin = 0, mov_col = 0;
-        
         if (lin_bola < lin_buraco) {
             mov_lin = 1;
         } else if (lin_bola > lin_buraco) {
             mov_lin = -1;
-        } else {
-            if (col_bola < col_buraco) {
-                mov_col = 1;
-            } else if (col_bola > col_buraco) {
-                mov_col = -1;
-            } 
         }
+        if (col_bola < col_buraco) {
+            mov_col = 1;
+        } else if (col_bola > col_buraco) {
+            mov_col = -1;
+        } 
         
         system("cls");
-        passos++;
-        
-        matriz[lin_bola][col_bola] = '-';
+
         lin_bola += mov_lin;
         col_bola += mov_col;
-        matriz[lin_bola][col_bola] = 'O';
+        
         //isso aq anda a bola com as novas atribuições de movimento
+        matriz[lin_bola][col_bola] = 'O';
 
 // Imprime o estado atual
     for(l = 0; l < 5; l ++){
@@ -78,18 +70,20 @@ int dist_atual = 0;
         }
         printf("\n");
     }
+//bola deixou, ent volta o '-' da posicao anterior
+    matriz[lin_buraco][col_buraco] = '-';
 
     usleep(5000000);
 
     //DISTANCIA ATUAL
-    //    dist_atual = abs(lin_buraco - lin_bola) + abs(col_buraco - col_bola);
+        dist_atual = abs(lin_buraco - lin_bola) + abs(col_buraco - col_bola);
     
     } while (lin_bola != lin_buraco || col_bola != col_buraco);
     //passos += dif; //acumula passos a cada andar que passa
-repeat++;
-} //while (repeat<10)
+
+//} //while (repeat<10)
 //int media = passos/10;
-printf("Passos: %d passos totais", passos);
+//printf("Passos: %d passos totais", passos);
 //printf("Média: %d passos por andar", media);
     return 0;
 }
