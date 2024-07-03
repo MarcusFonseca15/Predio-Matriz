@@ -87,9 +87,8 @@ int dist_atual = 0;
     //passos += dif; //acumula passos a cada andar que passa
 andar--;
 repeat++;
-} while (andar>0);
+    } while (andar>0);
 int media = passos/10;
-printf("Passos: %d passos totais", passos);
-printf("Média: %d passos por andar", media);
+printf("\nMedia: %d passos por andar", media);
     return 0;
 }
