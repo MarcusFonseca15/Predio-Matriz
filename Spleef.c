@@ -8,7 +8,7 @@ int main(){
 // estrutura de dados
 int x=5, y=5, w=5, z=5, l, c;
 char matriz[5][5];
-int passos = 0, andar;
+int passos = 0, andar=10;
 int repeat=0;
 
 while (repeat!=10){ //repetir 10 vezes/
@@ -85,10 +85,11 @@ int dist_atual = 0;
     
     } while (lin_bola != lin_buraco || col_bola != col_buraco);
     //passos += dif; //acumula passos a cada andar que passa
+andar--;
 repeat++;
-} //while (repeat<10)
-//int media = passos/10;
+} while (andar>0);
+int media = passos/10;
 printf("Passos: %d passos totais", passos);
-//printf("Média: %d passos por andar", media);
+printf("Média: %d passos por andar", media);
     return 0;
 }
