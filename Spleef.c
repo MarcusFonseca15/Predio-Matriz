@@ -1,5 +1,4 @@
-/*bola = O
-Buraco = X*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
@@ -11,7 +10,6 @@ int x=5, y=5, w=5, z=5, l, c;
 char matriz[5][5];
 int passos = 0, andar;
 int repeat=0;
-//distS0 distancia antes, distS1 distancial atual e compara
 
 while (repeat!=10){ //repetir 10 vezes/
 printf("Andar: %d", andar);
@@ -64,12 +62,12 @@ int dist_atual = 0;
         
         system("cls");
         passos++;
-        
+
+        // Atualiza a posição da bola
         matriz[lin_bola][col_bola] = '-';
         lin_bola += mov_lin;
         col_bola += mov_col;
         matriz[lin_bola][col_bola] = 'O';
-        //isso aq anda a bola com as novas atribuições de movimento
 
 // Imprime o estado atual
     for(l = 0; l < 5; l ++){
@@ -78,7 +76,8 @@ int dist_atual = 0;
         }
         printf("\n");
     }
-
+    printf("Andar: %d\n", andar);
+	printf("Passos: %d passos totais\n", passos);
     usleep(5000000);
 
     //DISTANCIA ATUAL
