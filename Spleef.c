@@ -10,16 +10,15 @@ int x=5, y=5, w=5, z=5, l, c;
 char matriz[5][5];
 int passos = 0, andar=10;
 int repeat=0;
-
+//BOLA: O
+    int lin_bola = (rand() % z);
+    int col_bola = (rand() % w);
 while (repeat!=10){ //repetir 10 vezes/
 printf("Andar: %d", andar);
  srand(time(NULL));
  //BURACO: X
     int lin_buraco = (rand() % x); // Linha
     int col_buraco = (rand() % y); // Coluna
-//BOLA: O
-    int lin_bola = (rand() % z);
-    int col_bola = (rand() % w);
     
     // Garantir que buraco e bola não spawne no msm lugar
     while (lin_bola == lin_buraco && col_bola == col_buraco) {
@@ -59,7 +58,7 @@ int dist_atual = 0;
                 mov_col = -1;
             } 
         }
-        
+        //BARREIRA 1vetor a mais ao redor do 5x5 para bolinha não escapar
         system("cls");
         passos++;
 
