@@ -1,0 +1,43 @@
+/*Predio 5x5x10 (10 andares)
+Cada andar tem um "buraco", que é randomizado a cada inicialização.
+
+Uma "bola" vai andar em busca desse buraco (De 1 em 1), e em seguida o algoritmo
+calcula a distancia entre o buraco e a posição atual, até chegar nele (Zerar).
+
+> Sendo um passo a passo, se a distancia aumentar, ele volta 1 passo automaticamente (Se qualquer eixo aumenta).
+> Ao mudar de andar, ele fará esse teste sempre.
+Voce vai imprimir a Distancia Total percorrida (soma do quanto percorreu em cada andar) e a Média de Passos por andar
+
+ATUALIZAÇÕES
+-Os movimentos da bola são registrados e mostrados (pelo menos a maioria)
+(Ele pelo menos mostra mais.)
+-Barreira 6x6 ao redor da matriz para evitar da bola fugir do mapa
+
+ERROS:
+-Movimento diagonal:
+A bola anda na diagonal muitas vezes. Indica que condições de movimento dos eixos
+da bola estão sendo concedidas ao mesmo tempo, e não um de cada vez
+Talvez seja algo na linha 85:
+            if (direction == 0 && matriz[lin_bola - 1][col_bola] != '9') { // cima
+                new_lin_bola--;
+            } else if (direction == 1 && matriz[lin_bola][col_bola + 1] != '9') { // direita
+                new_col_bola++;
+            } else if (direction == 2 && matriz[lin_bola + 1][col_bola] != '9') { // baixo
+                new_lin_bola++;
+            } else if (direction == 3 && matriz[lin_bola][col_bola - 1] != '9') { // esquerda
+                new_col_bola--;
+            }
+
+(ignore o +1 e -1 e o !=9. São efeitos consequentes da matriz ser 6x6)
+
+-Teletransporte repentino:
+Verificar se há algo a ver com o *new_lin_bola*, se incrementa mais
+do que o suficiente no movimento da lin_bola.
+Ainda não entendi muito bem a finalidade dessas variaveis new
+Possivelmente algum erro na linha 99:
+// Se a distância diminuiu ou se a posição é válida, move a bola
+            if (dist_atual <= dist_ant) {
+                lin_bola = new_lin_bola;
+                col_bola = new_col_bola;
+                dist_ant = dist_atual;
+            }

@@ -86,7 +86,6 @@ int main() {
 
             dist_atual = abs(lin_buraco - new_lin_bola) + abs(col_buraco - new_col_bola);
 
-            // Chama a função de impressão antes de verificar a distância
             impressao(matriz, new_lin_bola, new_col_bola, andar, passos, x, y, passos_andar, lin_buraco, col_buraco);
 
             // Se a distância diminuiu ou se a posição é válida, move a bola
@@ -94,6 +93,7 @@ int main() {
                 lin_bola = new_lin_bola;
                 col_bola = new_col_bola;
                 dist_ant = dist_atual;
+                impressao(matriz, new_lin_bola, new_col_bola, andar, passos, x, y, passos_andar, lin_buraco, col_buraco);
             }
 
             // Incrementa os passos a cada tentativa de movimento
