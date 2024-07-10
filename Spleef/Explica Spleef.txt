@@ -8,6 +8,7 @@ calcula a distancia entre o buraco e a posição atual, até chegar nele (Zerar)
 > Ao mudar de andar, ele fará esse teste sempre.
 Voce vai imprimir a Distancia Total percorrida (soma do quanto percorreu em cada andar) e a Média de Passos por andar
 
+______________________________________________________________________________________________
 ATUALIZAÇÕES
 -Os movimentos da bola são registrados e mostrados (pelo menos a maioria)
 (Ele pelo menos mostra mais.)

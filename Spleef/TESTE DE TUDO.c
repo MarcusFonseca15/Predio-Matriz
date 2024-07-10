@@ -3,13 +3,13 @@
 #include <time.h>
 #include <unistd.h>
 
-void impressao(char matriz[5][5], int lin_bola, int col_bola, int andar, int passos, int x, int y, int passos_andar, int lin_buraco, int col_buraco) {
-// inicialização da matriz 5x5 VAZIA
+void impressao(char matriz[5][5], int lin_bola, int col_bola, int andar, int x, int y, int passos_andar, int lin_buraco, int col_buraco) {
+    // Inicialização da matriz 5x5 VAZIA
     for (int j = 0; j < x; j++) {
-            for (int k = 0; k < y; k++) {
-                matriz[j][k] = '-';
-            }
-    }    
+        for (int k = 0; k < y; k++) {
+            matriz[j][k] = '-';
+        }
+    }
     // Atualiza a matriz
     matriz[lin_buraco][col_buraco] = 'X';
     matriz[lin_bola][col_bola] = 'O';
@@ -35,9 +35,8 @@ int main() {
     char matriz[5][5];
     int andar = 10;
     int repeat = 0;
-    int passos = 0, passos_tot = 0, passos_andar = 0;
+    int passos_tot = 0, passos_andar = 0;
 
-    // Semente do gerador de números aleatórios
     srand(time(NULL));
 
     // BOLA: O
@@ -69,7 +68,7 @@ int main() {
 
         // Andando
         do {
-            // Direção de movimento: aleatória entre 0 (cima), 1 (direita), 2 (baixo), 3 (esquerda)
+            // Escolhe direcao aleatória entre 0 (cima), 1 (direita), 2 (baixo), 3 (esquerda)
             int direction = rand() % 4;
             int new_lin_bola = lin_bola;
             int new_col_bola = col_bola;
@@ -84,32 +83,33 @@ int main() {
                 new_col_bola--;
             }
 
+            // Calcula a nova distância
             dist_atual = abs(lin_buraco - new_lin_bola) + abs(col_buraco - new_col_bola);
 
-            impressao(matriz, new_lin_bola, new_col_bola, andar, passos, x, y, passos_andar, lin_buraco, col_buraco);
+            // Incrementa os passos a cada tentativa de movimento
+            passos_andar++;
 
-            // Se a distância diminuiu ou se a posição é válida, move a bola
+            // Se a posição é válida, move a bola
             if (dist_atual <= dist_ant) {
                 lin_bola = new_lin_bola;
                 col_bola = new_col_bola;
                 dist_ant = dist_atual;
-                impressao(matriz, new_lin_bola, new_col_bola, andar, passos, x, y, passos_andar, lin_buraco, col_buraco);
             }
 
-            // Incrementa os passos a cada tentativa de movimento
-            passos++;
-            passos_andar++;
+            // Chama a função de impressão após tentar mover a bola
+            impressao(matriz, lin_bola, col_bola, andar, x, y, passos_andar, lin_buraco, col_buraco);
 
         } while (lin_bola != lin_buraco || col_bola != col_buraco);
 
         // Atualiza a posição inicial da bola para o próximo andar
         andar--;
         repeat++;
+        passos_tot += passos_andar;
     }
 
     // Calcula a média de passos por andar
-    printf("Passos: %d passos totais\n", passos);
-    int media = passos / 10;
+    printf("Passos: %d passos totais\n", passos_tot);
+    int media = passos_tot / 10;
     printf("\nMedia: %d passos por andar\n", media);
 
     return 0;

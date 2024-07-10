@@ -3,7 +3,7 @@
 #include <time.h>
 #include <unistd.h>
 
-void impressao(char matriz[5][5], int lin_bola, int col_bola, int andar, int passos, int x, int y, int passos_andar, int lin_buraco, int col_buraco) {
+void impressao(char matriz[5][5], int lin_bola, int col_bola, int andar, int x, int y, int passos_andar, int lin_buraco, int col_buraco) {
 // inicialização da matriz 5x5 VAZIA
     for (int j = 0; j < x; j++) {
             for (int k = 0; k < y; k++) {
@@ -26,7 +26,7 @@ void impressao(char matriz[5][5], int lin_bola, int col_bola, int andar, int pas
     }
     printf("Andar: %d\n", andar);
     printf("%d steps\n", passos_andar);
-    usleep(500000); // diminui o tempo de espera para 0.5 segundos
+    usleep(500000); //0.5 segundos
 }
 
 int main() {
@@ -35,16 +35,7 @@ int main() {
     char matriz[5][5];
     int andar = 10;
     int repeat = 0;
-    int passos = 0, passos_tot = 0, passos_andar = 0;
-
-    // Inicialização das bordas da matriz 6x6
-    for (int j = 0; j < 6; j++) {
-        for (int k = 0; k < 6; k++) {
-            if (j == 0 || j == 5 || k == 0 || k == 5) {
-                matriz[j][k] = '9';
-            }
-        }
-    }
+    int passos_tot = 0, passos_andar = 0;
 
     srand(time(NULL));
 
@@ -77,7 +68,7 @@ int main() {
 
         // Andando
         do {
-            // Direção de movimento: aleatória entre 0 (cima), 1 (direita), 2 (baixo), 3 (esquerda)
+            // Escolhe direcao aleatória entre 0 (cima), 1 (direita), 2 (baixo), 3 (esquerda)
             int direction = rand() % 4;
             int new_lin_bola = lin_bola;
             int new_col_bola = col_bola;
@@ -94,18 +85,17 @@ int main() {
  // Calcula a nova distância
             dist_atual = abs(lin_buraco - new_lin_bola) + abs(col_buraco - new_col_bola);
 
-            impressao(matriz, new_lin_bola, new_col_bola, andar, passos, x, y, passos_andar, lin_buraco, col_buraco);
+            impressao(matriz, new_lin_bola, new_col_bola, andar, x, y, passos_andar, lin_buraco, col_buraco);
 
             // Se a distância diminuiu ou se a posição é válida, move a bola
             if (dist_atual <= dist_ant) {
                 lin_bola = new_lin_bola;
                 col_bola = new_col_bola;
                 dist_ant = dist_atual;
-                impressao(matriz, new_lin_bola, new_col_bola, andar, passos, x, y, passos_andar, lin_buraco, col_buraco);
+                impressao(matriz, new_lin_bola, new_col_bola, andar, x, y, passos_andar, lin_buraco, col_buraco);
             }
 
             // Incrementa os passos a cada tentativa de movimento
-           // passos++;
             passos_andar++;
 
         } while (lin_bola != lin_buraco || col_bola != col_buraco);
